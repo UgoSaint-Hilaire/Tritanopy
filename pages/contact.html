@@ -6,7 +6,7 @@
     <meta name="description" content="Contactez Philippe Croizon">
 
     <title>Philippe Croizon</title>
-    <link rel="stylesheet" href="../css/style.css"></style>
+    <link rel="stylesheet" href="../css/style.css">
     <link rel="icon" href="../favicon.ico" type="image/x-icon">
 </head>
 <body>
@@ -19,7 +19,10 @@
     </nav>
     <main class="flex_section">
       <section>
-        <img src="../assets/img/philippe_contact.webp" alt="Philippe Croizon au bord de la mer" />
+        <img
+          src="../assets/img/philippe_contact.webp"
+          alt="Philippe Croizon au bord de la mer"
+        />
       </section>
       <section tabindex="0">
         <h2 class="spinnaker-regular medium-tittle">Contactez l'unique</h2>
@@ -29,18 +32,37 @@
           action="mailto:paulabeille33000@gmail.com"
           method="post"
           onsubmit="return validateForm()"
-          novalidate>
+          novalidate
+        >
           <div class="input-group" id="input-name">
             <label for="name">Nom Prénom</label>
-            <input type="text" id="name" name="name" placeholder="Nom Prénom" required />
+            <input
+              type="text"
+              id="name"
+              name="name"
+              placeholder="Nom Prénom"
+              required
+            />
           </div>
           <div class="input-group" id="input-email">
             <label for="email">Email</label>
-            <input type="email" id="email" name="email" placeholder="Email" required />
+            <input
+              type="email"
+              id="email"
+              name="email"
+              placeholder="Email"
+              required
+            />
           </div>
           <div class="input-group" id="input-message">
             <label for="message">Message</label>
-            <textarea id="message" name="message" placeholder="Votre message ici..." rows="10" required></textarea>
+            <textarea
+              id="message"
+              name="message"
+              placeholder="Votre message ici..."
+              rows="10"
+              required
+            ></textarea>
             <span id="message-error"></span>
           </div>
           <div class="button-container">
@@ -49,5 +71,8 @@
         </form>
       </section>
     </main>
+
+    <script src="../js/main.js"></script>
+    <script src="../js/access.js"></script>
   </body>
 </html>
