@@ -153,3 +153,43 @@ label {
   border-left: 6px solid #ff0000;
   padding-left: 10px;
 }
+
+#message-error {
+  color: rgb(0, 0, 0);
+  font-family: "Spinnaker", sans-serif;
+  font-weight: 400;
+  font-style: normal;
+  font-size: 14px;
+  margin-top: -10px;
+  margin-bottom: 10px;
+  display: none;
+}
+
+.input-error input,
+.input-error textarea {
+  box-sizing: border-box;
+  font-family: "Spinnaker", sans-serif;
+  width: 100%;
+  padding: 16px;
+  background-color: #fee1e1;
+  border: none;
+  font-size: 24px;
+  cursor: pointer;
+  float: right;
+  width: 60%;
+}
+
+.error-message {
+  display: flex;
+  align-items: center;
+  margin-top: 5px;
+}
+
+#btn-container {
+  text-align: center;
+}
+
+.border-left {
+  border-left: 6px solid #ff0000;
+  padding-left: 10px;
+}
