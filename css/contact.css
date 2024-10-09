@@ -1,0 +1,91 @@
+.flex_section {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-wrap: wrap;
+  margin: 1em;
+}
+img {
+  width: 100%;
+  height: auto;
+}
+
+section {
+  margin: 2em;
+}
+
+label {
+  font-family: "Spinnaker", sans-serif;
+  font-weight: 400;
+  font-style: normal;
+  font-size: 18px;
+  color: #20407a;
+}
+
+.syncopate-bold {
+  font-family: "Syncopate", sans-serif;
+  font-weight: 700;
+  font-style: normal;
+  font-size: 75px;
+  color: #20407a;
+}
+
+.spinnaker-regular {
+  font-family: "Spinnaker", sans-serif;
+  font-weight: 400;
+  font-style: normal;
+  color: #516fa6;
+}
+
+.big-tittle {
+  margin: auto;
+}
+
+.medium-tittle {
+  margin: auto;
+}
+
+.contact-form {
+  max-width: 400px;
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+}
+
+.input-group {
+  margin-bottom: 15px;
+}
+
+.input-group input,
+.input-group textarea {
+  box-sizing: border-box;
+  font-family: "Spinnaker", sans-serif;
+  width: 100%;
+  padding: 16px;
+  background-color: #e1ebfe;
+  border: none;
+  border-bottom: 6px solid #20407a;
+  margin-bottom: 10px;
+  font-size: 14px;
+  margin-top: 10px;
+}
+
+.input-group textarea {
+  resize: none;
+  border: none;
+}
+
+button {
+  background-color: #003366;
+  color: #ffffff;
+  padding: 15px;
+  border: none;
+  font-size: 24px;
+  cursor: pointer;
+  float: right;
+  width: 60%;
+}
+
+button:hover {
+  background-color: #0055b3;
+}
