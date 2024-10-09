@@ -1,0 +1,44 @@
+#access {
+  padding: 7px;
+  border: 3px solid #20407a;
+  border-radius: 9px;
+  position: absolute;
+  top: 120px;
+  right: 50px;
+  list-style-type: none;
+}
+
+#access_btn {
+  background: none;
+  color: inherit;
+  border: none;
+  padding: 7px;
+  font: inherit;
+  cursor: pointer;
+  outline: inherit;
+  border-radius: 9px;
+
+  width: 48px;
+  height: 48px;
+
+  display: flex;
+  align-items: center;
+}
+
+#access_btn {
+  margin-bottom: 5px;
+}
+
+#access_btn > img {
+  padding: 0;
+  width: 100%;
+  pointer-events: none;
+}
+
+.selectedBtn {
+  background-color: #adbfe1 !important;
+}
+
+#access_btn:hover {
+  background-color: #adbfe1;
+}
