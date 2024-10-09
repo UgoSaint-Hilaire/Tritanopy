@@ -1,0 +1,41 @@
+img.book {
+    max-width: 20%;
+    height: auto;
+    margin: 0;
+    padding: 0;
+}
+
+article {
+    display: flex;
+    align-items: flex-start;
+    margin: 0;
+    gap: 10%;
+    padding-bottom: 2%;
+}
+
+article div {
+    text-align: center;
+    margin: auto;
+}
+
+article div p.align-left {
+    text-align: left;
+}
+
+article div p.align-right {
+    text-align: right;
+}
+
+button {
+    background-color: #516FA6;
+    color: white;
+    border: none;
+    border-radius: 5px;
+    font-weight: bolder;
+    width: 30%; 
+    height: 3em;
+}
+
+h1 {
+    padding: 2%;
+}

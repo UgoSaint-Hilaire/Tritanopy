@@ -1,10 +1,14 @@
 @import url('https://fonts.googleapis.com/css2?family=Roboto:ital,wght@0,100;0,300;0,400;0,500;0,700;0,900;1,100;1,300;1,400;1,500;1,700;1,900&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Roboto:ital,wght@0,100;0,300;0,400;0,500;0,700;0,900;1,100;1,300;1,400;1,500;1,700;1,900&family=Syncopate:wght@400;700&display=swap');
+
 nav {
     display: flex;
     justify-content: center;
     align-items: center;
     position: sticky;
     background-color: #375791;
+    width: 100%;
+    top: 0;
 }
 nav a ,img {
     color:white;
@@ -17,10 +21,52 @@ nav a:hover {
 nav .active {
     text-decoration: underline;
 }
+
+footer {
+    display: flex;
+    position: absolute;
+    background-color: #375791;
+    width: 100%;
+    height: auto;
+    color: white;
+    align-items: center;
+    justify-content: center;
+}
+
 body {
     margin: auto;
+    min-height: 100vh;
 }
 .logo {
     height: 35px;
     width: auto;
+}
+
+h1 {
+    color: #516FA6;
+    font-family: "Syncopate", sans-serif;
+    font-size: 24px;
+    text-align: center;
+}
+
+h2 {
+    font-family: "Roboto", sans-serif;
+    font-size: 20px;
+    text-align: center;
+}
+
+p {
+    font-family: "Roboto", sans-serif;
+    font-size: 16px;
+}
+
+a {
+    font-family: "Roboto", sans-serif;
+}
+
+main {
+    display: flex;
+    margin-left: 25%;
+    margin-right: 25%;
+    align-items: center;
 }
