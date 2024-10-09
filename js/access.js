@@ -30,6 +30,7 @@ function createAcessibilityElement() {
         img.src = icon.path;
         img.alt = icon.name;
 
+        button.dataset.tooltip = icon.text;
         button.appendChild(img);
         button.title = icon.name;
         button.setAttribute("id", "access_btn");
@@ -43,6 +44,7 @@ function createAcessibilityElement() {
 }
 
 let selectedBtn = null;
+let tooltip = null;
 
 function openTooltip(event) {
   const clickedBtn = event.currentTarget;
@@ -51,12 +53,34 @@ function openTooltip(event) {
   if (clickedBtn === selectedBtn) {
     clickedBtn.classList.remove("selectedBtn");
     selectedBtn = null;
+    tooltip.style.display = "none";
   } else {
     // Si un autre bouton est cliqué
     if (selectedBtn) {
       selectedBtn.classList.remove("selectedBtn");
+      tooltip.style.display = "none";
     }
     clickedBtn.classList.add("selectedBtn");
     selectedBtn = clickedBtn;
+    createTooltip(clickedBtn.dataset.tooltip);
+    positionTooltip(clickedBtn);
   }
+}
+
+function createTooltip(text) {
+  if (!tooltip) {
+    const ul = document.getElementById("access");
+    // Si l'infobulle n'existe pas encore
+    tooltip = document.createElement("div");
+    tooltip.className = "tooltip";
+    ul.appendChild(tooltip);
+  }
+  tooltip.textContent = text;
+  tooltip.style.display = "block";
+}
+
+function positionTooltip(button) {
+  const rect = button.offsetTop;
+  tooltip.style.right = "70px"; // Centrer l'infobulle horizontalement
+  tooltip.style.top = `${rect}px`; // Positionner au-dessus du bouton
 }
