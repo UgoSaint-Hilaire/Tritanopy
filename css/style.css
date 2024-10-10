@@ -1,6 +1,7 @@
 @import url('https://fonts.googleapis.com/css2?family=Roboto:ital,wght@0,100;0,300;0,400;0,500;0,700;0,900;1,100;1,300;1,400;1,500;1,700;1,900&display=swap');
 @import url('https://fonts.googleapis.com/css2?family=Roboto:ital,wght@0,100;0,300;0,400;0,500;0,700;0,900;1,100;1,300;1,400;1,500;1,700;1,900&family=Syncopate:wght@400;700&display=swap');
 @import url('https://fonts.googleapis.com/css2?family=Lexend:wght@100..900&display=swap');
+
 nav {
     display: flex;
     justify-content: center;
@@ -10,34 +11,36 @@ nav {
     width: 100%;
     top: 0;
 }
-nav a ,img {
-    color:white;
-    padding: 1em;
-    text-decoration: none;
+nav a, img {
+  color: white;
+  padding: 1em;
+  text-decoration: none;
 }
 nav a:hover {
-    background-color: #2a437282;
+  background-color: #2a4372;
 }
 nav .active {
-    text-decoration: underline;
+  text-decoration: underline;
 }
 footer {
     display: flex;
-    position: absolute;
     background-color: #375791;
     width: 100%;
     height: auto;
     color: white;
     align-items: center;
     justify-content: center;
+    margin-top: auto;
 }
 body {
     margin: auto;
     min-height: 100vh;
+    display: flex;
+    flex-direction: column;
 }
 .logo {
-    height: 35px;
-    width: auto;
+  height: 35px;
+  width: auto;
 }
 h1 {
     color: #516FA6;
@@ -61,9 +64,27 @@ a {
 }
 main {
     display: flex;
-    margin-left: 25%;
-    margin-right: 25%;
+    margin: auto;
+    width: 50%;
     align-items: center;
+}
+
+button, .button {
+    background-color: #516FA6;
+    color: white;
+    border: none;
+    border-radius: 5px;
+    font-weight: bolder;
+    padding: 15px 36px;
+    font-size: 16px;
+}
+
+button:hover, .button:hover {
+    background-color: #7994C4;
+}
+
+a.button {
+    text-decoration: none;
 }
 
 .skip-link {
@@ -77,7 +98,6 @@ main {
     z-index: 100;
     text-decoration: none;
 }
-
 .skip-link:focus {
     top: 0;
 }

@@ -1,0 +1,57 @@
+@import url("https://fonts.googleapis.com/css2?family=Spinnaker&family=Syncopate:wght@400;700&display=swap");
+
+#access {
+  padding: 0 7px;
+  border-right: 7px solid #20407a;
+  position: fixed;
+  top: 120px;
+  right: 50px;
+  list-style-type: none;
+}
+
+#access_btn {
+  background: none;
+  color: inherit;
+  border: none;
+  padding: 12px;
+  border-radius: 10px;
+  font: inherit;
+  cursor: pointer;
+  outline: inherit;
+
+  width: 48px;
+  height: 48px;
+
+  display: flex;
+  align-items: center;
+}
+
+#access_btn {
+  margin-bottom: 2px;
+}
+
+#access_btn > img {
+  padding: 0;
+  width: 100%;
+  pointer-events: none;
+}
+
+.selectedBtn {
+  background-color: #adbfe1 !important;
+}
+
+#access_btn:hover {
+  background-color: #adbfe1;
+}
+
+.tooltip {
+  position: absolute;
+  padding: 20px;
+  background-color: #adbfe1;
+  border-radius: 10px;
+  font-family: "Spinnaker", sans-serif;
+  font-weight: 400;
+  font-style: normal;
+  font-size: 12px;
+  width: 200px;
+}

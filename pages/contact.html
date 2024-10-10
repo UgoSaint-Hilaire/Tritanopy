@@ -1,22 +1,64 @@
 <!DOCTYPE html>
 <html lang="fr">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <meta name="description" content="Contactez Philippe Croizon">
+	<head>
+		<meta charset="UTF-8" />
+		<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+		<meta name="description" content="Page contact" />
+		<title>Philippe Croizon - Contact</title>
+		<link rel="stylesheet" href="../css/style.css" />
+		<link rel="stylesheet" href="../css/contact.css" />
+		<link rel="icon" href="../favicon.ico" type="image/x-icon" />
+	</head>
+	<body>
+		<!--Skip links-->
+		<a href="#main-content" class="skip-link">Aller au contenu principal</a>
+		<a href="#footer" class="skip-link">Aller au pied de page</a>
+		<nav>
+			<img alt="logo" src="../assets/img/logo.webp" class="logo" />
+			<a href="./biographie.html">Biographie</a>
+			<a href="./performances.html">Performances</a>
+			<a href="./ouvrages.html">Ouvrages</a>
+			<a href="./contact.html" class="active">Contact</a>
+		</nav>
+		<main id="main-content">
+			<section>
+				<img src="../assets/img/philippe_contact.webp" alt="Philippe Croizon au bord de la mer" />
+				<div>
+					<h2 class="spinnaker-regular medium-tittle">Contactez l'unique</h2>
+					<h1 class="syncopate-bold big-tittle">CROIZON</h1>
+					<form action="mailto:paulabeille33000@gmail.com" method="post" onsubmit="return validateForm()" novalidate>
+						<div class="input-group" id="input-name">
+							<label for="name">Nom Prénom</label>
+							<input type="text" id="name" name="name" placeholder="Nom Prénom" required />
+						</div>
+						<div class="input-group" id="input-email">
+							<label for="email">Email</label>
+							<input type="email" id="email" name="email" placeholder="Email" required />
+						</div>
+						<div class="input-group" id="input-message">
+							<label for="message">Message</label>
+							<textarea id="message" name="message"
+								placeholder="Votre message ici..." rows="10" required></textarea>
+						</div>
+						<div class="error-message">
+							<img id="error-icon" src="../assets/img/error_icon/error.webp"
+								alt="Icone attention rouge" />
+							<span id="message-error"></span>
+						</div>
+						<div id="btn-container">
+							<button type="submit">Envoyer</button>
+						</div>
+					</form>
+				</div>
+			</section>
+		</main>
 
-    <title>Philippe Croizon</title>
-    <link rel="stylesheet" href="../css/style.css"></style>
-    <link rel="icon" href="../favicon.ico" type="image/x-icon">
-</head>
-<body>
-    <nav>
-        <img alt="logo" src="../assets/img/logo.webp" class="logo">
-        <a href="./biographie.html">Biographie</a>
-        <a href="./performances.html">Performances</a>
-        <a href="./ouvrages.html">Ouvrages</a>
-        <a href="./contact.html" class="active">Contact</a>
-    </nav>
-    
-</body>
+		<footer id="footer">
+			<img alt="logo" src="../assets/img/logo.webp" class="logo">
+			<p>© Philippe Croizon | Site web | 2024</p>
+		</footer>
+
+		<script src="../js/main.js"></script>
+		<script src="../js/access.js"></script>
+	</body>
 </html>

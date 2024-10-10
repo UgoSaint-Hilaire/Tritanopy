@@ -1,0 +1,24 @@
+{
+  "icons": [
+    {
+      "name": "Augmenter la taile du texte",
+      "path": "../assets/img/access_icons/icon_fontsize.webp",
+      "text": "Taille du texte : "
+    },
+    {
+      "name": "Augmenter la distance des lettres",
+      "path": "../assets/img/access_icons/icon_letterspacing.webp",
+      "text": "Distance entre les lettres : "
+    },
+    {
+      "name": "Augmenter la hauteur de ligne",
+      "path": "../assets/img/access_icons/icon_lignheight.webp",
+      "text": "Hauteur des lignes : "
+    },
+    {
+      "name": "Augmenter la distance des mots",
+      "path": "../assets/img/access_icons/icon_wordspacing.webp",
+      "text": "Distance entre les mots : "
+    }
+  ]
+}
