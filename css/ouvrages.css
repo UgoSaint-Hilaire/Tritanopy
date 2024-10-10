@@ -4,38 +4,56 @@ img.book {
     margin: 0;
     padding: 0;
 }
-
 article {
     display: flex;
     align-items: flex-start;
     margin: 0;
     gap: 10%;
-    padding-bottom: 2%;
+    padding: 20px 0px;
 }
-
 article div {
     text-align: center;
     margin: auto;
 }
-
 article div p.align-left {
     text-align: left;
 }
-
 article div p.align-right {
     text-align: right;
 }
-
-button {
+span {
     background-color: #516FA6;
     color: white;
     border: none;
     border-radius: 5px;
     font-weight: bolder;
-    width: 30%; 
-    height: 3em;
+    padding: 15px 36px;
+    font-size: 16px;
+}
+a {
+    text-decoration: none;
+}
+span:hover {
+    background-color: #7994C4;
 }
 
 h1 {
-    padding: 2%;
+    padding: 2.5em;
 }
+section {
+    padding-bottom: 68px;
+}
+@media (max-width: 1000px) { 
+    article {
+        display: block;
+        text-align: center;
+    }
+    p {
+        text-align: justify;
+    }
+    img {
+        max-width: 100%!important;
+    }
+   
+  }
+  
