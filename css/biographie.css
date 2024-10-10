@@ -1,0 +1,36 @@
+img {
+    max-width: 42%;  /* L'image ne sera jamais plus large que son conteneur */
+    height: auto;
+}
+article {
+    display: flex;
+    padding: 10px 0px;
+    align-items: center;
+    gap: 30px;
+}
+section {
+    padding: 40px 0px;
+}
+@media (max-width: 600px) { 
+    /* CSS pour téléphones */
+  }
+
+  @media (max-width: 900px) { 
+    article {
+        display: block;
+        text-align: center;
+    }
+    p {
+        text-align: justify;
+    }
+    img {
+        max-width: 100%;
+    }
+   
+  }
+  @media (max-width:1200px) {
+    main {
+        width:80%;
+        margin: auto;
+    }
+  }

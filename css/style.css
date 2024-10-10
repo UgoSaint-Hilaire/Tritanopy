@@ -54,6 +54,7 @@ p {
     font-family: "Roboto", sans-serif;
     font-size: 16px;
     line-height: 25px;
+    text-align: justify;
 }
 a {
     font-family: "Roboto", sans-serif;
@@ -84,7 +85,12 @@ main {
 [tabindex="0"]:focus {
     outline: 3px dashed #ff0000;
 }
-
 section {
     padding: 40px 0px;
+}
+@media (max-width:1200px) {
+    main {
+        width:80%;
+        margin: auto;
+    }
 }
