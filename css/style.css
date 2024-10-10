@@ -53,6 +53,7 @@ h2 {
 p {
     font-family: "Roboto", sans-serif;
     font-size: 16px;
+    line-height: 25px;
 }
 a {
     font-family: "Roboto", sans-serif;
@@ -63,6 +64,7 @@ main {
     margin-right: 25%;
     align-items: center;
 }
+
 .skip-link {
     position: absolute;
     top: -60px;
@@ -81,4 +83,8 @@ main {
 *:focus,
 [tabindex="0"]:focus {
     outline: 3px dashed #ff0000;
+}
+
+section {
+    padding: 40px 0px;
 }

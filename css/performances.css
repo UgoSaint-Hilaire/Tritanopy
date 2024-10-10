@@ -1,3 +1,8 @@
 .performances-page article {
         display: flex;
+        align-items: center;
+}
+article img {
+        max-width: 50%;
+        height: fit-content;
 }
