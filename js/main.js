@@ -1,5 +1,6 @@
 function validateForm() {
   let isValid = true;
+  let isEmailValid = true;
 
   // Clear previous error messages
   document.getElementById("message-error").innerText = "";
@@ -23,7 +24,7 @@ function validateForm() {
     isValid = false;
     document.getElementById("input-email").classList.add("input-error");
   } else if (!emailPattern.test(email)) {
-    isValid = false;
+    isEmailValid = false;
     document.getElementById("input-email").classList.add("input-error");
   }
 
@@ -36,10 +37,18 @@ function validateForm() {
 
   // Affiche le message d'erreur s'il y a des erreurs
   if (!isValid) {
-    document.getElementById("message-error").innerText =
-      "Veuillez remplir tous les champs.";
-    document.getElementById("message-error").style.display = "block"; // Affiche le message d'erreur
-    document.getElementById("input-message").classList.add("input-error"); // Ajoute la classe d'erreur pour le message
+    document.getElementById("message-error").innerText = "Veuillez remplir tous les champs.";
+    document.getElementById("message-error").style.display = "block";
+    document.getElementById("error-icon").style.display = "block";
+  }
+
+  // Affiche le message d'erreur si le format de l'email n'est pas bon
+  if (!isEmailValid) {
+    document.getElementById("message-error").innerText = "Format du mail incorrect. (exemple@mail.mail)";
+    document.getElementById("message-error").style.display = "block";
+    document.getElementById("error-icon").style.display = "block";
+    isValid = false;
+    isEmailValid = true;
   }
 
   return isValid;
