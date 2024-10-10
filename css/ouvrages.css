@@ -43,3 +43,17 @@ h1 {
 section {
     padding-bottom: 68px;
 }
+@media (max-width: 1000px) { 
+    article {
+        display: block;
+        text-align: center;
+    }
+    p {
+        text-align: justify;
+    }
+    img {
+        max-width: 100%!important;
+    }
+   
+  }
+  
