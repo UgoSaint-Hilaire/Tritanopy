@@ -1,0 +1,5 @@
+# ignore all files related to lighthouse not needed to run the project
+node_modules/
+package-lock.json
+package.json
+report.html
