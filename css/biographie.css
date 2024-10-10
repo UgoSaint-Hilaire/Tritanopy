@@ -1,0 +1,13 @@
+img {
+    max-width: 40%;
+    height: fit-content;
+}
+article {
+    display: flex;
+    padding: 10px 0px;
+    align-items: center;
+    gap: 30px;
+}
+section {
+    padding: 40px 0px;
+}
