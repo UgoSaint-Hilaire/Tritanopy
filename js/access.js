@@ -71,12 +71,17 @@ function openTooltip(event) {
     selectedBtn = clickedBtn;
 
     const content = generateTooltipContent(clickedBtn.title);
-    createTooltip(content.name, content.value, content.rangeInput);
+    createTooltip(
+      content.name,
+      content.value,
+      content.rangeInput,
+      content.valueWithUnit
+    );
     positionTooltip(clickedBtn);
   }
 }
 
-function createTooltip(text, value, rangeInput) {
+function createTooltip(text, value, rangeInput, valueWithUnit) {
   if (!tooltip) {
     const ul = document.getElementById("access");
     tooltip = document.createElement("div");
@@ -91,7 +96,8 @@ function createTooltip(text, value, rangeInput) {
   const textNode = document.createTextNode(text);
   const spanValue = document.createElement("span");
   spanValue.className = "tooltip_p_value";
-  spanValue.textContent = value;
+  spanValue.textContent = valueWithUnit;
+  console.log(valueWithUnit);
 
   p.appendChild(textNode);
   p.appendChild(spanValue);
@@ -117,62 +123,66 @@ function generateTooltipContent(iconNameToFind) {
   const icon = iconsData.find((icon) => icon.name === iconNameToFind);
 
   if (icon) {
-    const { value, rangeInput } = calculateValue(icon.name);
-    return { name: icon.text, value, rangeInput };
+    const { value, rangeInput, valueWithUnit } = calculateValue(icon.name);
+    console.log(valueWithUnit);
+    return { name: icon.text, value, rangeInput, valueWithUnit };
   } else {
     console.error("Icône non trouvée.");
-    return { name: "err", value: "err", rangeInput: null };
+    return { name: "err", value: "err", rangeInput: null, valueWithUnit: null };
   }
 }
 
 function calculateValue(iconName) {
   const bodyStyle = window.getComputedStyle(document.body);
   let calculatedValue = null;
+  let calculatedValueNum = null;
   let rangeInput = null;
 
   switch (iconName) {
     case "Augmenter la taile du texte":
-      calculatedValue = parseFloat(pxToEm(bodyStyle.fontSize));
-      rangeInput = createRangeInput(0.6, 2, calculatedValue, 0.1);
-      console.log(calculatedValue);
-      console.log(bodyStyle.fontSize);
+      calculatedValue = pxToEm(bodyStyle.fontSize);
+      calculatedValueNum = parseFloat(calculatedValue);
+      rangeInput = createRangeInput(0.6, 2, calculatedValueNum, 0.1);
+      console.log("calcultated value : " + calculatedValue);
       break;
     case "Augmenter la distance des lettres":
-      calculatedValue = parseFloat(pxToEm(bodyStyle.letterSpacing));
-      rangeInput = createRangeInput(0, 1, calculatedValue, 0.1);
-
-      console.log(bodyStyle.letterSpacing);
-      console.log(calculatedValue);
+      calculatedValue = pxToEm(bodyStyle.letterSpacing);
+      calculatedValueNum = parseFloat(calculatedValue);
+      rangeInput = createRangeInput(-0.4, 1, calculatedValueNum, 0.1);
+      console.log("calcultated value : " + calculatedValue);
       break;
     case "Augmenter la hauteur de ligne":
-      calculatedValue = parseFloat(pxToEm(bodyStyle.lineHeight));
-      rangeInput = createRangeInput(1, 3, calculatedValue, 0.1);
-      console.log(calculatedValue);
+      calculatedValue = pxToEm(bodyStyle.lineHeight);
+      calculatedValueNum = parseFloat(calculatedValue);
+      rangeInput = createRangeInput(1, 2, calculatedValueNum, 0.2);
+      console.log("calcultated value : " + calculatedValue);
       break;
     case "Augmenter la distance des mots":
-      calculatedValue = parseFloat(pxToEm(bodyStyle.wordSpacing).slice(0, -2));
-      rangeInput = createRangeInput(0, 2, calculatedValue, 0.1);
-      console.log(calculatedValue);
+      calculatedValue = pxToEm(bodyStyle.wordSpacing);
+      calculatedValueNum = parseFloat(calculatedValue);
+      rangeInput = createRangeInput(-0.5, 1.25, calculatedValueNum, 0.25);
+      console.log("calcultated value : " + calculatedValue);
       break;
     case "Augmenter la distance entre paragraphes":
       const paraStyle = window.getComputedStyle(document.querySelector("p"));
-      calculatedValue = parseFloat(paraStyle.margin);
-      rangeInput = createRangeInput(0, 50, calculatedValue, 5);
+      calculatedValue = paraStyle.margin;
+      calculatedValueNum = parseFloat(calculatedValue);
+      rangeInput = createRangeInput(0, 50, calculatedValueNum, 5);
       console.log(calculatedValue);
       break;
   }
 
-  return { value: calculatedValue.toFixed(1), rangeInput };
+  return { value: calculatedValueNum, rangeInput, calculatedValue };
 }
 
 function pxToEm(pxValue) {
   const baseFontSize = 16;
   if (pxValue === "normal") {
-    return "0";
+    return "0em";
   }
   const numericValue = parseFloat(pxValue);
   const emValue = numericValue / baseFontSize;
-  return emValue.toString();
+  return `${emValue}em`;
 }
 
 function createRangeInput(min, max, value, step) {
@@ -180,7 +190,7 @@ function createRangeInput(min, max, value, step) {
   rangeInput.type = "range";
   rangeInput.min = min;
   rangeInput.max = max;
-  rangeInput.value = value;
+  // rangeInput.defaultValue = value;
   rangeInput.step = step;
   rangeInput.className = "range_input";
 
