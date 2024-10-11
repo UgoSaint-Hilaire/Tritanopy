@@ -108,6 +108,14 @@ a.button {
 section {
     padding: 40px 0px;
 }
+
+footer a {
+    color: white;
+}
+footer a:hover {
+    color: #8eaee6;
+}
+
 @media (max-width:1200px) {
     main {
         width:80%;
