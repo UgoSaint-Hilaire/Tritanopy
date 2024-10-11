@@ -100,6 +100,8 @@ function createTooltip(text, value, rangeInput) {
 
   if (rangeInput) {
     tooltip.appendChild(rangeInput);
+    // Mise à jour initiale de la valeur
+    updateTooltipValue(parseFloat(rangeInput.value).toFixed(1));
   }
 
   tooltip.style.display = "block";
@@ -130,40 +132,47 @@ function calculateValue(iconName) {
 
   switch (iconName) {
     case "Augmenter la taile du texte":
-      calculatedValue = pxToEm(bodyStyle.fontSize);
-      rangeInput = createRangeInput(0.5, 3, parseFloat(calculatedValue), 0.2);
+      calculatedValue = parseFloat(pxToEm(bodyStyle.fontSize));
+      rangeInput = createRangeInput(0.6, 2, calculatedValue, 0.1);
+      console.log(calculatedValue);
+      console.log(bodyStyle.fontSize);
       break;
     case "Augmenter la distance des lettres":
-      calculatedValue = pxToEm(bodyStyle.letterSpacing);
-      rangeInput = createRangeInput(0, 1, parseFloat(calculatedValue), 0.05);
+      calculatedValue = parseFloat(pxToEm(bodyStyle.letterSpacing));
+      rangeInput = createRangeInput(0, 1, calculatedValue, 0.1);
+
+      console.log(bodyStyle.letterSpacing);
+      console.log(calculatedValue);
       break;
     case "Augmenter la hauteur de ligne":
-      calculatedValue = pxToEm(bodyStyle.lineHeight);
-      rangeInput = createRangeInput(1, 3, parseFloat(calculatedValue), 0.1);
+      calculatedValue = parseFloat(pxToEm(bodyStyle.lineHeight));
+      rangeInput = createRangeInput(1, 3, calculatedValue, 0.1);
+      console.log(calculatedValue);
       break;
     case "Augmenter la distance des mots":
-      calculatedValue = pxToEm(bodyStyle.wordSpacing);
-      rangeInput = createRangeInput(0, 2, parseFloat(calculatedValue), 0.1);
+      calculatedValue = parseFloat(pxToEm(bodyStyle.wordSpacing).slice(0, -2));
+      rangeInput = createRangeInput(0, 2, calculatedValue, 0.1);
+      console.log(calculatedValue);
       break;
     case "Augmenter la distance entre paragraphes":
       const paraStyle = window.getComputedStyle(document.querySelector("p"));
       calculatedValue = parseFloat(paraStyle.margin);
       rangeInput = createRangeInput(0, 50, calculatedValue, 5);
+      console.log(calculatedValue);
       break;
   }
 
-  return { value: calculatedValue, rangeInput };
+  return { value: calculatedValue.toFixed(1), rangeInput };
 }
 
 function pxToEm(pxValue) {
-  // 1em == 16px par défaut
   const baseFontSize = 16;
   if (pxValue === "normal") {
-    return "0em";
+    return "0";
   }
   const numericValue = parseFloat(pxValue);
   const emValue = numericValue / baseFontSize;
-  return `${emValue}em`;
+  return emValue.toString();
 }
 
 function createRangeInput(min, max, value, step) {
@@ -175,5 +184,22 @@ function createRangeInput(min, max, value, step) {
   rangeInput.step = step;
   rangeInput.className = "range_input";
 
+  // Assurons-nous que l'attribut value est correctement défini
+  rangeInput.setAttribute("value", value);
+
+  // Ajout d'un événement pour mettre à jour la valeur affichée
+  rangeInput.addEventListener("input", function () {
+    updateTooltipValue(parseFloat(this.value).toFixed(1));
+    // Mettons également à jour l'attribut value
+    this.setAttribute("value", this.value);
+  });
+
   return rangeInput;
+}
+
+function updateTooltipValue(value) {
+  const spanValue = document.querySelector(".tooltip_p_value");
+  if (spanValue) {
+    spanValue.textContent = value;
+  }
 }

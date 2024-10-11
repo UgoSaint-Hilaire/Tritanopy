@@ -56,6 +56,10 @@
   width: 200px;
 }
 
+.tooltip_p {
+  margin: 0;
+}
+
 .tooltip_p_value {
   font-weight: 800;
 }
