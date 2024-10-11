@@ -1,18 +1,43 @@
 @import url("https://fonts.googleapis.com/css2?family=Spinnaker&family=Syncopate:wght@400;700&display=swap");
 
 img {
-  width: 100%;
   height: auto;
   align-self: center;
 }
 
+.left-part {
+  width: 48%;
+  padding: 0;
+}
+.right-part {
+  width: 48%;
+}
+
+@media (max-width: 1024px) {
+  .left-part {
+    display: none;
+  }
+  .right-part {
+    width: 100%;
+  }
+
+  main {
+    display: block !important;
+  }
+}
+
+@media (max-width: 570px) {
+  .syncopate-bold {
+    font-size: 50px !important;
+  }
+}
+
 section {
   display: flex;
-  justify-content: center;
+  justify-content: space-between;
   align-items: flex-start;
-  margin: 0;
-  gap: 10%;
-  padding: 20px 0px;
+  box-sizing: border-box;
+  flex-wrap: wrap;
 }
 
 label {
@@ -40,13 +65,13 @@ label {
 
 .big-tittle {
   margin: auto;
-  margin-bottom: 40px;
 }
 
 .medium-tittle {
   text-align: start;
   margin-block-end: 0;
   margin-block-start: 0;
+  margin-bottom: 40px;
 }
 
 .input-group {
@@ -72,14 +97,14 @@ label {
   border: none;
 }
 
+#name-error,
+#email-error,
 #message-error {
   color: rgb(0, 0, 0);
   font-family: "Spinnaker", sans-serif;
   font-weight: 400;
   font-style: normal;
   font-size: 14px;
-  margin-top: -10px;
-  margin-bottom: 10px;
   display: none;
 }
 
@@ -102,26 +127,29 @@ label {
 
 #message-error {
   display: none;
-  margin-top: 7px;
 }
 
-.input-error #message-error::before {
-  display: inline-block;
-}
-
-#error-icon {
+#error-icon-1,
+#error-icon-2,
+#error-icon-3 {
   display: none;
   width: 24px;
   height: 24px;
+  padding: 0;
+  padding-right: 10px;
 }
 
 .error-message {
   display: flex;
   align-items: center;
-  margin-bottom: 10px;
-  margin-top: -20px;
+  margin-top: 5px;
 }
 
 #btn-container {
   text-align: center;
+}
+
+.border-left {
+  border-left: 6px solid #ff0000;
+  padding-left: 10px;
 }
