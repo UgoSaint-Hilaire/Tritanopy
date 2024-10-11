@@ -19,6 +19,11 @@
       "name": "Augmenter la distance des mots",
       "path": "../assets/img/access_icons/icon_wordspacing.webp",
       "text": "Distance entre les mots : "
+    },
+    {
+      "name": "Augmenter la distance entre paragraphes",
+      "path": "../assets/img/access_icons/icon_pragraphspacing.webp",
+      "text": "Distance entre paragraphes : "
     }
   ]
 }

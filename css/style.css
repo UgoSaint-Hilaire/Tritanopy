@@ -3,6 +3,11 @@
 @import url('https://fonts.googleapis.com/css2?family=Lexend:wght@100..900&display=swap');
 
 nav {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  position: sticky;
+  background-color: #375791;
     display: flex;
     justify-content: center;
     align-items: center;
@@ -10,6 +15,12 @@ nav {
     background-color: #375791;
     width: 100%;
     top: 0;
+}
+nav a,
+img {
+  color: white;
+  padding: 1em;
+  text-decoration: none;
 }
 nav a, img {
   color: white;
