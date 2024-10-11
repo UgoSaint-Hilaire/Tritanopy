@@ -124,38 +124,32 @@ function generateTooltipContent(iconNameToFind) {
 function calculateValue(iconName) {
   const bodyStyle = window.getComputedStyle(document.body);
   let calculatedValue = null;
-  let = null;
   let rangeInput = null;
   let unit = "em";
 
   switch (iconName) {
     case "Augmenter la taile du texte":
       calculatedValue = pxToEm(bodyStyle.fontSize);
-      rangeInput = createRangeInput(0.6, 2, calculatedValue, 0.1, unit);
-      console.log(calculatedValue);
+      rangeInput = createRangeInput(0.6, 3, calculatedValue, 0.2, unit, "fontSize");
       break;
     case "Augmenter la distance des lettres":
       calculatedValue = pxToEm(bodyStyle.letterSpacing);
-      rangeInput = createRangeInput(-0.4, 1, calculatedValue, 0.1, unit);
-      console.log(calculatedValue);
+      rangeInput = createRangeInput(0, 0.7, calculatedValue, 0.1, unit, "letter-spacing");
       break;
     case "Augmenter la hauteur de ligne":
       calculatedValue = pxToEm(bodyStyle.lineHeight);
-      rangeInput = createRangeInput(1, 2, calculatedValue, 0.2, unit);
-      console.log(calculatedValue);
+      rangeInput = createRangeInput(1, 2, calculatedValue, 0.2, unit, "line-height");
       break;
     case "Augmenter la distance des mots":
       calculatedValue = pxToEm(bodyStyle.wordSpacing);
-      rangeInput = createRangeInput(-0.5, 1.25, calculatedValue, 0.25, unit);
-      console.log(calculatedValue);
+      rangeInput = createRangeInput(-0.5, 1.25, calculatedValue, 0.25, unit, "word-spacing");
       break;
     case "Augmenter la distance entre paragraphes":
       unit = "px";
       const paraStyle = window.getComputedStyle(document.querySelector("p"));
       calculatedValueRaw = paraStyle.margin;
       calculatedValue = parseFloat(calculatedValueRaw);
-      rangeInput = createRangeInput(0, 50, calculatedValue, 5, unit);
-      console.log(calculatedValue);
+      rangeInput = createRangeInput(0, 100, calculatedValue, 10, unit, "margin");
       break;
   }
 
@@ -172,7 +166,7 @@ function pxToEm(pxValue) {
   return emValue;
 }
 
-function createRangeInput(min, max, value, step, unit) {
+function createRangeInput(min, max, value, step, unit, cssProperty) {
   const rangeInput = document.createElement("input");
   rangeInput.type = "range";
   rangeInput.min = min;
@@ -181,18 +175,36 @@ function createRangeInput(min, max, value, step, unit) {
   rangeInput.step = step;
   rangeInput.className = "range_input";
   rangeInput.setAttribute("value", value);
+  rangeInput.dataset.css_property = cssProperty;
 
   rangeInput.addEventListener("input", function () {
-    updateTooltipValue(parseFloat(this.value), unit);
+    updateTooltipValue(parseFloat(this.value), unit, cssProperty);
     this.setAttribute("value", this.value);
   });
 
   return rangeInput;
 }
 
-function updateTooltipValue(value, unit) {
+function updateTooltipValue(value, unit, cssProperty) {
   const spanValue = document.querySelector(".tooltip_p_value");
   if (spanValue) {
     spanValue.textContent = value + unit;
+  }
+  modifyCSSaccessibility(value, unit, cssProperty);
+}
+
+function modifyCSSaccessibility(value, unit, cssProperty) {
+  let unitValue = value + unit;
+  let currentProperty = cssProperty;
+  let body = document.body;
+  let p = document.getElementsByTagName("p");
+
+  if (currentProperty == "margin") {
+    for (let element of p) {
+      element.style.marginBottom = unitValue;
+      element.style.marginTop = unitValue;
+    }
+  } else {
+    body.style[currentProperty] = unitValue;
   }
 }
