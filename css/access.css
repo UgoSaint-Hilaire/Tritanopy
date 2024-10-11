@@ -55,3 +55,12 @@
   font-size: 12px;
   width: 200px;
 }
+
+.tooltip_p_value {
+  font-weight: 800;
+}
+
+.range_input {
+  width: 100%;
+  margin-top: 20px;
+}
