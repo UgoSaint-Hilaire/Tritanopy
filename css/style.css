@@ -131,7 +131,8 @@ footer a:hover {
 
 @media screen and (max-width: 768px) {
     nav {
-        justify-content: space-between;
+        justify-content: space-around;
+        gap: 320px;
     }
     .nav-links {
         display: none;
