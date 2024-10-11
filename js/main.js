@@ -4,10 +4,17 @@ function validateForm() {
 
   // Clear previous error messages
   document.getElementById("message-error").innerText = "";
-  document.getElementById("message-error").style.display = "none"; // Cache le message d'erreur au début
-  const inputGroups = document.querySelectorAll(".input-group"); // Sélectionne tous les groupes d'input
+  document.getElementById("message-error").style.display = "none";
+  document.getElementById("name-error").innerText = "";
+  document.getElementById("name-error").style.display = "none";
+  document.getElementById("email-error").innerText = "";
+  document.getElementById("email-error").style.display = "none";
+  document.getElementById("error-icon-1").style.display = "none";
+  document.getElementById("error-icon-2").style.display = "none";
+  document.getElementById("error-icon-3").style.display = "none";
+  const inputGroups = document.querySelectorAll(".input-group");
   inputGroups.forEach((group) => {
-    group.classList.remove("input-error"); // Retire la classe d'erreur de tous les champs
+    group.classList.remove("input-error");
   });
 
   // Validate Name
@@ -15,6 +22,12 @@ function validateForm() {
   if (name.trim() === "") {
     isValid = false;
     document.getElementById("input-name").classList.add("input-error");
+    document.getElementById("name-error").innerText = "Veuillez remplir ce champ.";
+    document.getElementById("name-error").style.display = "block";
+    document.getElementById("error-icon-1").style.display = "block";
+    document.getElementById("border-error-1").classList.add("border-left");
+  } else {
+    document.getElementById("border-error-1").classList.remove("border-left");
   }
 
   // Validate Email
@@ -23,9 +36,20 @@ function validateForm() {
   if (email.trim() === "") {
     isValid = false;
     document.getElementById("input-email").classList.add("input-error");
+    document.getElementById("email-error").innerText = "Veuillez remplir ce champ.";
+    document.getElementById("email-error").style.display = "block";
+    document.getElementById("error-icon-2").style.display = "block";
+    document.getElementById("border-error-2").classList.add("border-left");
   } else if (!emailPattern.test(email)) {
     isEmailValid = false;
+    isValid = false;
     document.getElementById("input-email").classList.add("input-error");
+    document.getElementById("email-error").innerText = "Format du mail incorrect. (exemple@mail.mail)";
+    document.getElementById("email-error").style.display = "block";
+    document.getElementById("error-icon-2").style.display = "block";
+    document.getElementById("border-error-2").classList.add("border-left");
+  } else {
+    document.getElementById("border-error-2").classList.remove("border-left");
   }
 
   // Validate Message
@@ -33,22 +57,12 @@ function validateForm() {
   if (message.trim() === "") {
     isValid = false;
     document.getElementById("input-message").classList.add("input-error");
-  }
-
-  // Affiche le message d'erreur s'il y a des erreurs
-  if (!isValid) {
-    document.getElementById("message-error").innerText = "Veuillez remplir tous les champs.";
+    document.getElementById("message-error").innerText = "Veuillez remplir ce champ.";
     document.getElementById("message-error").style.display = "block";
-    document.getElementById("error-icon").style.display = "block";
-  }
-
-  // Affiche le message d'erreur si le format de l'email n'est pas bon
-  if (!isEmailValid) {
-    document.getElementById("message-error").innerText = "Format du mail incorrect. (exemple@mail.mail)";
-    document.getElementById("message-error").style.display = "block";
-    document.getElementById("error-icon").style.display = "block";
-    isValid = false;
-    isEmailValid = true;
+    document.getElementById("error-icon-3").style.display = "block";
+    document.getElementById("border-error-3").classList.add("border-left");
+  } else {
+    document.getElementById("border-error-3").classList.remove("border-left");
   }
 
   return isValid;
