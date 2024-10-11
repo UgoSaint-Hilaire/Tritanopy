@@ -72,8 +72,6 @@ h2 {
 }
 p {
     font-family: "Roboto", sans-serif;
-    font-size: 16px;
-    line-height: 25px;
     text-align: justify;
 }
 a {
@@ -84,6 +82,7 @@ main {
     margin: auto;
     width: 50%;
     align-items: center;
+    font-family: "Roboto", sans-serif;
 }
 
 button, .button {
