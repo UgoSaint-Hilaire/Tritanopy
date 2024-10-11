@@ -22,6 +22,12 @@ nav a:hover {
 nav .active {
   text-decoration: underline;
 }
+.burger-menu {
+    display: none;
+    font-size: 2em;
+    color: white;
+    cursor: pointer;
+}
 footer {
     display: flex;
     background-color: #375791;
@@ -120,5 +126,31 @@ footer a:hover {
     main {
         width:80%;
         margin: auto;
+    }
+}
+
+@media screen and (max-width: 768px) {
+    nav {
+        justify-content: space-around;
+        gap: 320px;
+    }
+    .nav-links {
+        display: none;
+        flex-direction: column;
+        background-color: #375791;
+        position: absolute;
+        top: 60px;
+        left: 0;
+        width: 100%;
+        text-align: center;
+    }
+
+    .nav-links a {
+        padding: 1.5em;
+        display: block; 
+    }
+
+    .burger-menu {
+        display: block; 
     }
 }
