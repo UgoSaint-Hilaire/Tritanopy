@@ -41,3 +41,6 @@ a {
       flex-direction: column-reverse;
     }
   }
+footer a {
+    text-decoration: underline;
+}
