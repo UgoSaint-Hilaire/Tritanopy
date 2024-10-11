@@ -24,9 +24,7 @@ function fetchIconsData() {
       iconsData = data.icons;
       createAcessibilityElement();
     })
-    .catch((error) =>
-      console.error("Erreur lors du chargement des icônes :", error)
-    );
+    .catch((error) => console.error("Erreur lors du chargement des icônes :", error));
 }
 
 function createAcessibilityElement() {
@@ -71,17 +69,12 @@ function openTooltip(event) {
     selectedBtn = clickedBtn;
 
     const content = generateTooltipContent(clickedBtn.title);
-    createTooltip(
-      content.name,
-      content.value,
-      content.rangeInput,
-      content.valueWithUnit
-    );
+    createTooltip(content.name, content.rangeInput, content.value, content.unit);
     positionTooltip(clickedBtn);
   }
 }
 
-function createTooltip(text, value, rangeInput, valueWithUnit) {
+function createTooltip(text, rangeInput, value, unit) {
   if (!tooltip) {
     const ul = document.getElementById("access");
     tooltip = document.createElement("div");
@@ -96,8 +89,6 @@ function createTooltip(text, value, rangeInput, valueWithUnit) {
   const textNode = document.createTextNode(text);
   const spanValue = document.createElement("span");
   spanValue.className = "tooltip_p_value";
-  spanValue.textContent = valueWithUnit;
-  console.log(valueWithUnit);
 
   p.appendChild(textNode);
   p.appendChild(spanValue);
@@ -106,8 +97,7 @@ function createTooltip(text, value, rangeInput, valueWithUnit) {
 
   if (rangeInput) {
     tooltip.appendChild(rangeInput);
-    // Mise à jour initiale de la valeur
-    updateTooltipValue(parseFloat(rangeInput.value).toFixed(1));
+    updateTooltipValue(parseFloat(rangeInput.value), unit);
   }
 
   tooltip.style.display = "block";
@@ -123,69 +113,66 @@ function generateTooltipContent(iconNameToFind) {
   const icon = iconsData.find((icon) => icon.name === iconNameToFind);
 
   if (icon) {
-    const { value, rangeInput, valueWithUnit } = calculateValue(icon.name);
-    console.log(valueWithUnit);
-    return { name: icon.text, value, rangeInput, valueWithUnit };
+    const { value, rangeInput, unit } = calculateValue(icon.name);
+    return { name: icon.text, value, rangeInput, unit };
   } else {
     console.error("Icône non trouvée.");
-    return { name: "err", value: "err", rangeInput: null, valueWithUnit: null };
+    return { name: "err", value: "err", rangeInput: null };
   }
 }
 
 function calculateValue(iconName) {
   const bodyStyle = window.getComputedStyle(document.body);
   let calculatedValue = null;
-  let calculatedValueNum = null;
+  let = null;
   let rangeInput = null;
+  let unit = "em";
 
   switch (iconName) {
     case "Augmenter la taile du texte":
       calculatedValue = pxToEm(bodyStyle.fontSize);
-      calculatedValueNum = parseFloat(calculatedValue);
-      rangeInput = createRangeInput(0.6, 2, calculatedValueNum, 0.1);
-      console.log("calcultated value : " + calculatedValue);
+      rangeInput = createRangeInput(0.6, 2, calculatedValue, 0.1, unit);
+      console.log(calculatedValue);
       break;
     case "Augmenter la distance des lettres":
       calculatedValue = pxToEm(bodyStyle.letterSpacing);
-      calculatedValueNum = parseFloat(calculatedValue);
-      rangeInput = createRangeInput(-0.4, 1, calculatedValueNum, 0.1);
-      console.log("calcultated value : " + calculatedValue);
+      rangeInput = createRangeInput(-0.4, 1, calculatedValue, 0.1, unit);
+      console.log(calculatedValue);
       break;
     case "Augmenter la hauteur de ligne":
       calculatedValue = pxToEm(bodyStyle.lineHeight);
-      calculatedValueNum = parseFloat(calculatedValue);
-      rangeInput = createRangeInput(1, 2, calculatedValueNum, 0.2);
-      console.log("calcultated value : " + calculatedValue);
+      rangeInput = createRangeInput(1, 2, calculatedValue, 0.2, unit);
+      console.log(calculatedValue);
       break;
     case "Augmenter la distance des mots":
       calculatedValue = pxToEm(bodyStyle.wordSpacing);
-      calculatedValueNum = parseFloat(calculatedValue);
-      rangeInput = createRangeInput(-0.5, 1.25, calculatedValueNum, 0.25);
-      console.log("calcultated value : " + calculatedValue);
+      rangeInput = createRangeInput(-0.5, 1.25, calculatedValue, 0.25, unit);
+      console.log(calculatedValue);
       break;
     case "Augmenter la distance entre paragraphes":
+      unit = "px";
       const paraStyle = window.getComputedStyle(document.querySelector("p"));
-      calculatedValue = paraStyle.margin;
-      calculatedValueNum = parseFloat(calculatedValue);
-      rangeInput = createRangeInput(0, 50, calculatedValueNum, 5);
+      calculatedValueRaw = paraStyle.margin;
+      calculatedValue = parseFloat(calculatedValueRaw);
+      rangeInput = createRangeInput(0, 50, calculatedValue, 5, unit);
       console.log(calculatedValue);
       break;
   }
 
-  return { value: calculatedValueNum, rangeInput, calculatedValue };
+  return { value: calculatedValue, rangeInput, unit };
 }
 
 function pxToEm(pxValue) {
   const baseFontSize = 16;
   if (pxValue === "normal") {
-    return "0em";
+    return 0;
   }
   const numericValue = parseFloat(pxValue);
   const emValue = numericValue / baseFontSize;
-  return `${emValue}em`;
+  return emValue;
 }
 
-function createRangeInput(min, max, value, step) {
+function createRangeInput(min, max, value, step, unit) {
   const rangeInput = document.createElement("input");
   rangeInput.type = "range";
   rangeInput.min = min;
@@ -193,23 +180,19 @@ function createRangeInput(min, max, value, step) {
   // rangeInput.defaultValue = value;
   rangeInput.step = step;
   rangeInput.className = "range_input";
-
-  // Assurons-nous que l'attribut value est correctement défini
   rangeInput.setAttribute("value", value);
 
-  // Ajout d'un événement pour mettre à jour la valeur affichée
   rangeInput.addEventListener("input", function () {
-    updateTooltipValue(parseFloat(this.value).toFixed(1));
-    // Mettons également à jour l'attribut value
+    updateTooltipValue(parseFloat(this.value), unit);
     this.setAttribute("value", this.value);
   });
 
   return rangeInput;
 }
 
-function updateTooltipValue(value) {
+function updateTooltipValue(value, unit) {
   const spanValue = document.querySelector(".tooltip_p_value");
   if (spanValue) {
-    spanValue.textContent = value;
+    spanValue.textContent = value + unit;
   }
 }
