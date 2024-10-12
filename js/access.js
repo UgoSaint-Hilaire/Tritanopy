@@ -1,6 +1,8 @@
 let selectedBtn = null;
 let tooltip = null;
 let iconsData = null;
+let vanillaPreset = {};
+let userPrefPreset = {};
 
 /* INITIAL SET UP */
 document.addEventListener("DOMContentLoaded", () => {
@@ -15,6 +17,7 @@ document.addEventListener("DOMContentLoaded", () => {
   head.appendChild(link);
 
   fetchIconsData();
+  initVanillaPreset();
 });
 
 function fetchIconsData() {
@@ -25,6 +28,20 @@ function fetchIconsData() {
       createAcessibilityElement();
     })
     .catch((error) => console.error("Erreur lors du chargement des icônes :", error));
+}
+
+function initVanillaPreset() {
+  const bodyStyle = window.getComputedStyle(document.body);
+  const paraStyle = window.getComputedStyle(document.querySelector("p"));
+
+  vanillaPreset = {
+    fontSize: pxToEm(bodyStyle.fontSize),
+    letterSpacing: pxToEm(bodyStyle.letterSpacing),
+    lineHeight: pxToEm(bodyStyle.lineHeight),
+    wordSpacing: pxToEm(bodyStyle.wordSpacing),
+    paragraphSpacing: parseFloat(paraStyle.margin),
+  };
+  userPrefPreset = { ...vanillaPreset };
 }
 
 function createAcessibilityElement() {
@@ -45,7 +62,11 @@ function createAcessibilityElement() {
     button.appendChild(img);
     button.setAttribute("id", "access_btn");
 
-    button.addEventListener("click", openTooltip);
+    if (button.title == "Réinitialiser les valeurs d'accessibilités") {
+      button.addEventListener("click", resetAcessibilityValues);
+    } else {
+      button.addEventListener("click", openTooltip);
+    }
 
     li.appendChild(button);
     ul.appendChild(li);
@@ -122,33 +143,34 @@ function generateTooltipContent(iconNameToFind) {
 }
 
 function calculateValue(iconName) {
-  const bodyStyle = window.getComputedStyle(document.body);
   let calculatedValue = null;
   let rangeInput = null;
   let unit = "em";
 
   switch (iconName) {
     case "Augmenter la taile du texte":
-      calculatedValue = pxToEm(bodyStyle.fontSize);
+      calculatedValue = userPrefPreset.fontSize;
       rangeInput = createRangeInput(0.6, 3, calculatedValue, 0.2, unit, "fontSize");
       break;
+
     case "Augmenter la distance des lettres":
-      calculatedValue = pxToEm(bodyStyle.letterSpacing);
+      calculatedValue = userPrefPreset.letterSpacing;
       rangeInput = createRangeInput(0, 0.7, calculatedValue, 0.1, unit, "letter-spacing");
       break;
+
     case "Augmenter la hauteur de ligne":
-      calculatedValue = pxToEm(bodyStyle.lineHeight);
+      calculatedValue = userPrefPreset.lineHeight;
       rangeInput = createRangeInput(1, 2, calculatedValue, 0.2, unit, "line-height");
       break;
+
     case "Augmenter la distance des mots":
-      calculatedValue = pxToEm(bodyStyle.wordSpacing);
+      calculatedValue = userPrefPreset.wordSpacing;
       rangeInput = createRangeInput(-0.5, 1.25, calculatedValue, 0.25, unit, "word-spacing");
       break;
+
     case "Augmenter la distance entre paragraphes":
       unit = "px";
-      const paraStyle = window.getComputedStyle(document.querySelector("p"));
-      calculatedValueRaw = paraStyle.margin;
-      calculatedValue = parseFloat(calculatedValueRaw);
+      calculatedValue = userPrefPreset.paragraphSpacing;
       rangeInput = createRangeInput(0, 100, calculatedValue, 10, unit, "margin");
       break;
   }
@@ -191,6 +213,7 @@ function updateTooltipValue(value, unit, cssProperty) {
     spanValue.textContent = value + unit;
   }
   modifyCSSaccessibility(value, unit, cssProperty);
+  updateUserPrefPreset(value, cssProperty);
 }
 
 function modifyCSSaccessibility(value, unit, cssProperty) {
@@ -207,4 +230,43 @@ function modifyCSSaccessibility(value, unit, cssProperty) {
   } else {
     body.style[currentProperty] = unitValue;
   }
+}
+
+function updateUserPrefPreset(value, cssProperty) {
+  switch (cssProperty) {
+    case "fontSize":
+      userPrefPreset.fontSize = value;
+      break;
+    case "letter-spacing":
+      userPrefPreset.letterSpacing = value;
+      break;
+    case "line-height":
+      userPrefPreset.lineHeight = value;
+      break;
+    case "word-spacing":
+      userPrefPreset.wordSpacing = value;
+      break;
+    case "margin":
+      userPrefPreset.paragraphSpacing = value;
+      break;
+  }
+}
+
+function resetAcessibilityValues() {
+  userPrefPreset = { ...vanillaPreset };
+
+  document.body.style.fontSize = `${vanillaPreset.fontSize}em`;
+  document.body.style.letterSpacing = `${vanillaPreset.letterSpacing}em`;
+  document.body.style.lineHeight = `${vanillaPreset.lineHeight}em`;
+  document.body.style.wordSpacing = `${vanillaPreset.wordSpacing}em`;
+  const paragraphs = document.getElementsByTagName("p");
+  for (let p of paragraphs) {
+    p.style.marginTop = `${vanillaPreset.paragraphSpacing}px`;
+    p.style.marginBottom = `${vanillaPreset.paragraphSpacing}px`;
+  }
+
+  const tooltip = document.querySelector(".tooltip");
+  const selectedBtn = document.querySelector(".selectedBtn");
+  if (selectedBtn) selectedBtn.classList.remove("selectedBtn");
+  if (tooltip) tooltip.style.display = "none";
 }

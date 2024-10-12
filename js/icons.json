@@ -24,6 +24,10 @@
       "name": "Augmenter la distance entre paragraphes",
       "path": "../assets/img/access_icons/icon_pragraphspacing.webp",
       "text": "Distance entre paragraphes : "
+    },
+    {
+      "name": "Réinitialiser les valeurs d'accessibilités",
+      "path": "../assets/img/access_icons/icon-reinitialize.webp"
     }
   ]
 }
