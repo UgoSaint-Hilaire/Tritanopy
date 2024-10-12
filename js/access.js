@@ -18,6 +18,7 @@ document.addEventListener("DOMContentLoaded", () => {
 
   fetchIconsData();
   initVanillaPreset();
+  loadPreferences();
 });
 
 function fetchIconsData() {
@@ -42,6 +43,31 @@ function initVanillaPreset() {
     paragraphSpacing: parseFloat(paraStyle.margin),
   };
   userPrefPreset = { ...vanillaPreset };
+}
+
+function loadPreferences() {
+  const savedPreferences = localStorage.getItem("userAccessibilityPreferences");
+  if (savedPreferences) {
+    userPrefPreset = JSON.parse(savedPreferences);
+    applyPreferences();
+  }
+}
+
+function applyPreferences() {
+  document.body.style.fontSize = `${userPrefPreset.fontSize}em`;
+  document.body.style.letterSpacing = `${userPrefPreset.letterSpacing}em`;
+  document.body.style.lineHeight = `${userPrefPreset.lineHeight}em`;
+  document.body.style.wordSpacing = `${userPrefPreset.wordSpacing}em`;
+
+  const paragraphs = document.getElementsByTagName("p");
+  for (let p of paragraphs) {
+    p.style.marginTop = `${userPrefPreset.paragraphSpacing}px`;
+    p.style.marginBottom = `${userPrefPreset.paragraphSpacing}px`;
+  }
+}
+
+function savePreferences() {
+  localStorage.setItem("userAccessibilityPreferences", JSON.stringify(userPrefPreset));
 }
 
 function createAcessibilityElement() {
@@ -250,10 +276,12 @@ function updateUserPrefPreset(value, cssProperty) {
       userPrefPreset.paragraphSpacing = value;
       break;
   }
+  savePreferences();
 }
 
 function resetAcessibilityValues() {
   userPrefPreset = { ...vanillaPreset };
+  localStorage.removeItem("userAccessibilityPreferences");
 
   document.body.style.fontSize = `${vanillaPreset.fontSize}em`;
   document.body.style.letterSpacing = `${vanillaPreset.letterSpacing}em`;
