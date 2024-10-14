@@ -101,7 +101,7 @@ label {
   box-sizing: border-box;
   width: 100%;
   padding: 16px;
-  background-color: #fee1e1;
+  background-color: #e1ebfe;
   border: none;
   margin-bottom: 10px;
   font-size: 14px;
@@ -139,4 +139,8 @@ label {
 .border-left {
   border-left: 6px solid #ff0000;
   padding-left: 10px;
+}
+
+h1 {
+  line-height: normal;
 }
