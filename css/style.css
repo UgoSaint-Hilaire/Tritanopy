@@ -7,12 +7,12 @@ nav {
   justify-content: center;
   align-items: center;
   position: sticky;
-  background-color: #375791;
+  background-color: #20407A;
   display: flex;
   justify-content: center;
   align-items: center;
   position: sticky;
-  background-color: #375791;
+  background-color: #20407A;
   width: 100%;
   top: 0;
 }
@@ -29,7 +29,7 @@ img {
   text-decoration: none;
 }
 nav a:hover {
-  background-color: #2a4372;
+  background-color: #20407A;
 }
 nav .active {
   text-decoration: underline;
@@ -42,7 +42,7 @@ nav .active {
 }
 footer {
   display: flex;
-  background-color: #375791;
+  background-color: #20407A;
   width: 100%;
   height: auto;
   color: white;
@@ -117,7 +117,7 @@ a.button {
   height: 40px;
   left: 0;
   background: #000;
-  color: #fff;
+  color: white;
   padding: 8px;
   z-index: 100;
   text-decoration: none;
@@ -155,7 +155,7 @@ footer a:hover {
   .nav-links {
     display: none;
     flex-direction: column;
-    background-color: #375791;
+    background-color: #20407A;
     position: absolute;
     top: 60px;
     left: 0;

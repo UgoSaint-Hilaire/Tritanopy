@@ -32,7 +32,7 @@
 
 #access li:last-of-type #access_btn {
   margin-bottom: 0px;
-  background-color: #e1ebfe;
+  background-color: white;
 }
 
 #access li:last-of-type #access_btn:hover {
