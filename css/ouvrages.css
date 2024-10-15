@@ -1,46 +1,55 @@
 img.book {
-    max-width: 20%;
-    height: auto;
-    margin: 0;
-    padding: 0;
+	max-width: 20%;
+	height: auto;
+	margin: 0;
+	padding: 0;
 }
-article {
-    display: flex;
-    align-items: flex-start;
-    margin: 0;
-    gap: 10%;
-    padding: 20px 0px;
-}
-article div {
-    text-align: center;
-    margin: auto;
-}
-article p {
-    padding-bottom: 18px;
-}
-a {
-    text-decoration: none;
-}
-@media (max-width: 1000px) { 
-    article {
-        display: block;
-        text-align: center;
-        flex-direction: column;
-    }
-    article img {
-        margin-bottom: 20px;
-        max-width: 100%!important;
 
-    }
-    p {
-        text-align: justify;
-    }
-  
-    article:nth-child(3), article:nth-child(5) {
-      display: flex;
-      flex-direction: column-reverse;
-    }
-  }
+article {
+	display: flex;
+	align-items: flex-start;
+	margin: 0;
+	gap: 10%;
+	padding: 20px 0px;
+}
+
+article div {
+	text-align: center;
+	margin: auto;
+}
+
+article p {
+	padding-bottom: 18px;
+}
+
+a {
+	text-decoration: none;
+}
+
+@media (max-width: 1000px) {
+	article {
+		display: block;
+		text-align: center;
+		flex-direction: column;
+	}
+
+	article img {
+		margin-bottom: 20px;
+		max-width: 100% !important;
+
+	}
+
+	p {
+		text-align: justify;
+	}
+
+	article:nth-child(3),
+	article:nth-child(5) {
+		display: flex;
+		flex-direction: column-reverse;
+	}
+}
+
 footer a {
-    text-decoration: underline;
+	text-decoration: underline;
 }
