@@ -1,22 +1,24 @@
 .performances-page article {
-        display: flex;
-        align-items: center;
+	display: flex;
+	align-items: center;
 }
+
 article img {
-        max-width: 50%;
-        height: fit-content;
-}
-@media (max-width: 1100px) { 
-        article {
-            display: block!important;
-            text-align: center;
-        }
-        p {
-            text-align: justify;
-        }
-        img {
-            max-width: 100%!important;
-        }
+	max-width: 50%;
+	height: fit-content;
 }
 
+@media (max-width: 1100px) {
+	article {
+		display: block !important;
+		text-align: center;
+	}
 
+	p {
+		text-align: justify;
+	}
+
+	img {
+		max-width: 100% !important;
+	}
+}
