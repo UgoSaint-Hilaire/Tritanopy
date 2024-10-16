@@ -36,7 +36,6 @@ function initVanillaPreset() {
 	const paraStyle = window.getComputedStyle(document.querySelector("p"));
 
 	vanillaPreset = {
-		fontSize: pxToEm(bodyStyle.fontSize),
 		letterSpacing: pxToEm(bodyStyle.letterSpacing),
 		lineHeight: pxToEm(bodyStyle.lineHeight),
 		wordSpacing: pxToEm(bodyStyle.wordSpacing),
@@ -54,7 +53,6 @@ function loadPreferences() {
 }
 
 function applyPreferences() {
-	document.body.style.fontSize = `${userPrefPreset.fontSize}em`;
 	document.body.style.letterSpacing = `${userPrefPreset.letterSpacing}em`;
 	document.body.style.lineHeight = `${userPrefPreset.lineHeight}em`;
 	document.body.style.wordSpacing = `${userPrefPreset.wordSpacing}em`;
@@ -71,7 +69,6 @@ function savePreferences() {
 }
 
 function initAcessibilityElement() {
-	document.getElementById("access_letters_size").addEventListener("click", openTooltip);
 	document.getElementById("access_letters_spacing").addEventListener("click", openTooltip);
 	document.getElementById("access_lines_height").addEventListener("click", openTooltip);
 	document.getElementById("access_words_spacing").addEventListener("click", openTooltip);
@@ -154,11 +151,6 @@ function calculateValue(iconName) {
 	let unit = "em";
 
 	switch (iconName) {
-		case "Augmenter la taile du texte":
-			calculatedValue = userPrefPreset.fontSize;
-			rangeInput = createRangeInput(0.6, 3, calculatedValue, 0.2, unit, "fontSize");
-			break;
-
 		case "Augmenter la distance des lettres":
 			calculatedValue = userPrefPreset.letterSpacing;
 			rangeInput = createRangeInput(0, 0.7, calculatedValue, 0.1, unit, "letter-spacing");
