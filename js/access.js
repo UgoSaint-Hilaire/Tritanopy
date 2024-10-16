@@ -6,7 +6,6 @@ let userPrefPreset = {};
 
 /* INITIAL SET UP */
 document.addEventListener("DOMContentLoaded", () => {
-	console.log("script initialized");
 	const head = document.head;
 	const link = document.createElement("link");
 
