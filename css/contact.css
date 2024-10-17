@@ -26,12 +26,6 @@ img {
 	}
 }
 
-@media (max-width: 570px) {
-	.syncopate-bold {
-		font-size: 50px !important;
-	}
-}
-
 section {
 	display: flex;
 	justify-content: space-between;
@@ -47,23 +41,10 @@ label {
 	color: #20407a;
 }
 
-.syncopate-bold {
-	font-family: "Syncopate", sans-serif;
-	font-weight: 700;
-	font-style: normal;
-	font-size: 75px;
-	color: #20407a;
-}
-
 .big-tittle {
 	margin: auto;
-}
-
-.medium-tittle {
-	text-align: start;
-	margin-block-end: 0;
-	margin-block-start: 0;
-	margin-bottom: 40px;
+	font-size: 50px;
+	color: #20407a;
 }
 
 .input-group {
