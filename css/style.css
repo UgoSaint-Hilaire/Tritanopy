@@ -1,5 +1,4 @@
-@import url("https://fonts.googleapis.com/css2?family=Roboto:ital,wght@0,100;0,300;0,400;0,500;0,700;0,900;1,100;1,300;1,400;1,500;1,700;1,900&display=swap");
-@import url("https://fonts.googleapis.com/css2?family=Roboto:ital,wght@0,100;0,300;0,400;0,500;0,700;0,900;1,100;1,300;1,400;1,500;1,700;1,900&family=Syncopate:wght@400;700&display=swap");
+@import url("https://fonts.googleapis.com/css2?family=Roboto:ital,wght@0,200&family=Syncopate:wght@400;700&display=swap");
 @import url("https://fonts.googleapis.com/css2?family=Lexend:wght@100..900&display=swap");
 
 nav {
@@ -72,7 +71,7 @@ body {
 
 .logo {
 	height: 35px;
-	width: auto;
+	width: 35px;
 }
 
 h1 {
@@ -191,4 +190,75 @@ footer a:hover {
 	.burger-menu {
 		display: block;
 	}
+}
+
+/* Access CSS */
+#access {
+	position: fixed;
+	top: 120px;
+	right: 1px;
+	border-right: 7px solid #20407a;
+}
+
+.access_btn {
+	background: none;
+	color: inherit;
+	border: none;
+	padding: 12px;
+	border-radius: 10px;
+	font: inherit;
+	cursor: pointer;
+
+	width: 48px;
+	height: 48px;
+
+	display: flex;
+	align-items: center;
+}
+
+.access_btn {
+	margin-bottom: 2px;
+}
+
+#access li:last-of-type .access_btn:hover {
+	background-color: #adbfe1;
+}
+
+.access_btn>img {
+	padding: 0;
+	width: 100%;
+	pointer-events: none;
+}
+
+.selectedBtn {
+	background-color: #adbfe1 !important;
+}
+
+.access_btn:hover {
+	background-color: #adbfe1;
+}
+
+.tooltip {
+	position: absolute;
+	padding: 20px;
+	background-color: #adbfe1;
+	border-radius: 10px;
+	font-weight: 400;
+	font-style: normal;
+	font-size: 12px;
+	width: 200px;
+}
+
+.tooltip_p {
+	margin: 0;
+}
+
+.tooltip_p_value {
+	font-weight: 800;
+	font-size: 16px;
+}
+
+.range_input {
+	width: 100%;
+	margin-top: 20px;
 }
