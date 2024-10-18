@@ -1,6 +1,5 @@
 function validateForm() {
 	let isValid = true;
-	let isEmailValid = true;
 
 	// Clear previous error messages
 	document.getElementById("message-error").innerText = "";
@@ -41,7 +40,6 @@ function validateForm() {
 		document.getElementById("error-icon-2").style.display = "block";
 		document.getElementById("border-error-2").classList.add("border-left");
 	} else if (!emailPattern.test(email)) {
-		isEmailValid = false;
 		isValid = false;
 		document.getElementById("input-email").classList.add("input-error");
 		document.getElementById("email-error").innerText = "Format du mail incorrect. (exemple@mail.mail)";
@@ -153,18 +151,19 @@ function openTooltip(event) {
 		selectedBtn = clickedBtn;
 
 		const content = generateTooltipContent(clickedBtn.title);
-		createTooltip(content.name, content.rangeInput, content.value, content.unit);
+		createTooltip(content.name, content.rangeInput, content.unit, clickedBtn);
 		positionTooltip(clickedBtn);
 	}
 }
 
-function createTooltip(text, rangeInput, value, unit) {
-	if (!tooltip) {
-		const ul = document.getElementById("access");
-		tooltip = document.createElement("div");
-		tooltip.className = "tooltip";
-		ul.appendChild(tooltip);
+function createTooltip(text, rangeInput, unit, clickedBtn) {
+	if (tooltip) {
+		tooltip.outerHTML = "";
 	}
+	const ul = document.getElementById("access");
+	tooltip = document.createElement("div");
+	tooltip.className = "tooltip";
+	clickedBtn.after(tooltip);
 
 	tooltip.innerHTML = "";
 
